@@ -56,7 +56,7 @@ namespace EcoDenuncia.Infrastructure.Persistence
         {
             var allowed = new[] { "ADMIN", "USER" };
             if (Array.IndexOf(allowed, tipoUsuario) < 0)
-                throw new Exception("Role inválida.");
+                throw new Exception("Tipo de usuário inválida.");
         }
 
         internal static Usuario Create(string nome, string email, string senha, string tipoUsuario = "USER")

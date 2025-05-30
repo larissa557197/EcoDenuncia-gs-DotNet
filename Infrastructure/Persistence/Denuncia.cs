@@ -7,11 +7,11 @@
 
         // relacionamento com usuario
         public Guid IdUsuario { get; private set; }
-        public Usuario Usuario { get;  set; }
+        public Usuario Usuario { get; set; }
 
         // relacionamento com localizacao
         public Guid IdLocalizacao { get; private set; }
-        public Localizacao Localizacao { get;  set; }
+        public Localizacao Localizacao { get; set; }
 
         // relacionamento com orgão publico
         public Guid IdOrgaoPublico { get; private set; }
@@ -22,7 +22,7 @@
 
         public Denuncia(Guid idUsuario, Guid idLocalizacao, Guid idOrgaoPublico, DateTime dataHora, string descricao)
         {
-     
+
             ValidarDescricao(descricao);
             IdDenuncia = Guid.NewGuid();
             IdUsuario = idUsuario;
@@ -47,8 +47,9 @@
 
         }
 
-        internal static Denuncia Create (Guid idUsuario, Guid idLocalizacao, Guid idOrgaoPublico, DateTime dataHora, string descricao)
+        internal static Denuncia Create(Guid idUsuario, Guid idLocalizacao, Guid idOrgaoPublico, DateTime dataHora, string descricao)
         {
             return new Denuncia(idUsuario, idLocalizacao, idOrgaoPublico, dataHora, descricao);
         }
     }
+}

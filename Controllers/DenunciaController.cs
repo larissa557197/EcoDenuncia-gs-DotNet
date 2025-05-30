@@ -1,0 +1,149 @@
+﻿using EcoDenuncia.DTO.Request;
+using EcoDenuncia.DTO.Response;
+using EcoDenuncia.Infrastructure.Contexts;
+using EcoDenuncia.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
+
+
+namespace EcoDenuncia.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    [Tags("Denuncias")]
+    public class DenunciaController : ControllerBase
+    {
+        private readonly EcoDenunciaContext _context;
+
+        public DenunciaController(EcoDenunciaContext context)
+        {
+            _context = context;
+        }
+
+        /// <summary>
+        /// Retorna uma lista de denúncias
+        /// </summary>
+        /// <response code="200">Lista de denúncias retornada com sucesso</response>
+        /// <response code="500">Erro interno do servidor</response>
+        [HttpGet]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<ActionResult<IEnumerable<DenunciaResponse>>> GetDenuncias()
+        {
+            var denunciasDto = await _context.Denuncias
+                .Select(denuncia => new DenunciaResponse
+                {
+                    IdDenuncia = denuncia.IdDenuncia,
+                    IdUsuario = denuncia.IdUsuario,
+                    IdLocalizacao = denuncia.IdLocalizacao,
+                    IdOrgaoPublico = denuncia.IdOrgaoPublico,
+                    DataHora = denuncia.DataHora,
+                    Descricao = denuncia.Descricao
+                })
+                .ToListAsync();
+
+            return Ok(denunciasDto);
+        }
+
+        /// <summary>
+        /// Retorna uma denúncia pelo Id
+        /// </summary>
+        /// <param name="id">Id da denúncia</param>
+        /// <response code="200">Denúncia encontrada</response>
+        /// <response code="404">Denúncia não encontrada</response>
+        [HttpGet("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<DenunciaResponse>> GetDenuncia(Guid id)
+        {
+            var denuncia = await _context.Denuncias
+                .Include(d => d.Usuario)
+                .Include(d => d.Localizacao)
+                .Include(d => d.OrgaoPublico)
+                .SingleOrDefaultAsync(d => d.IdDenuncia == id);
+
+            if (denuncia == null)
+            {
+                return NotFound();
+            }
+
+            var dto = new DenunciaResponse
+            {
+                IdDenuncia = denuncia.IdDenuncia,
+                IdUsuario = denuncia.IdUsuario,
+                IdLocalizacao = denuncia.IdLocalizacao,
+                IdOrgaoPublico = denuncia.IdOrgaoPublico,
+                DataHora = denuncia.DataHora,
+                Descricao = denuncia.Descricao
+            };
+
+            return Ok(dto);
+        }
+
+        /// <summary>
+        /// Cria uma nova denúncia
+        /// </summary>
+        /// <param name="request">Dados da denúncia</param>
+        /// <response code="201">Denúncia criada com sucesso</response>
+        /// <response code="400">Dados inválidos na requisição</response>
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult<DenunciaResponse>> PostDenuncia(DenunciaRequest request)
+        {
+            var usuario = await _context.Usuarios.FindAsync(request.IdUsuario);
+            if (usuario == null) return BadRequest("Usuário não encontrado.");
+
+            var localizacao = await _context.Localizacoes.FindAsync(request.IdLocalizacao);
+            if (localizacao == null) return BadRequest("Localização não encontrada.");
+
+            var orgao = await _context.OrgaosPublicos.FindAsync(request.IdOrgaoPublico);
+            if (orgao == null) return BadRequest("Órgão público não encontrado.");
+
+            var denuncia = Denuncia.Create(request.IdUsuario, request.IdLocalizacao, request.IdOrgaoPublico, request.DataHora, request.Descricao);
+
+            _context.Denuncias.Add(denuncia);
+            await _context.SaveChangesAsync();
+
+            var response = new DenunciaResponse
+            {
+                IdDenuncia = denuncia.IdDenuncia,
+                IdUsuario = denuncia.IdUsuario,
+                IdLocalizacao = denuncia.IdLocalizacao,
+                IdOrgaoPublico = denuncia.IdOrgaoPublico,
+                DataHora = denuncia.DataHora,
+                Descricao = denuncia.Descricao
+            };
+
+            return CreatedAtAction(nameof(GetDenuncia), new { id = denuncia.IdDenuncia }, response);
+        }
+
+        /// <summary>
+        /// Remove uma denúncia pelo Id
+        /// </summary>
+        /// <param name="id">Id da denúncia</param>
+        /// <response code="204">Denúncia removida com sucesso</response>
+        /// <response code="404">Denúncia não encontrada</response>
+        [HttpDelete("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> DeleteDenuncia(Guid id)
+        {
+            var denuncia = await _context.Denuncias.FindAsync(id);
+            if (denuncia == null)
+            {
+                return NotFound();
+            }
+
+            _context.Denuncias.Remove(denuncia);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+    }
+}
+
+
+
+   

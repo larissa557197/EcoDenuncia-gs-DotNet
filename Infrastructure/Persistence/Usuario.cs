@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EcoDenuncia.Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace EcoDenuncia.Infrastructure.Persistence
 {
@@ -8,18 +9,18 @@ namespace EcoDenuncia.Infrastructure.Persistence
         public string Nome { get; private set; }
         public string Email { get; private set; }
         public string Senha { get; private set; }
-        public string TipoUsuario { get; private set; }
+        public TipoUsuario TipoUsuario { get; private set; }
 
 
         // relacionanento 1:N
         public ICollection<Denuncia> Denuncias { get; private set; }
 
-        public Usuario(string nome, string email, string senha, string tipoUsuario = "USER")
+        public Usuario(string nome, string email, string senha, TipoUsuario tipoUsuario = TipoUsuario.USER)
         {
             ValidarNome(nome);
             ValidarEmail(email);
             ValidarSenha(senha);
-            ValidarTipoUsuario(tipoUsuario);
+
 
             Nome = nome;
             Email = email;
@@ -52,14 +53,9 @@ namespace EcoDenuncia.Infrastructure.Persistence
                 throw new Exception("Senha deve ter no máximo 100 caracteres.");
         }
 
-        private void ValidarTipoUsuario(string tipoUsuario)
-        {
-            var allowed = new[] { "ADMIN", "USER" };
-            if (Array.IndexOf(allowed, tipoUsuario) < 0)
-                throw new Exception("Tipo de usuário inválida.");
-        }
+        
 
-        internal static Usuario Create(string nome, string email, string senha, string tipoUsuario = "USER")
+        internal static Usuario Create(string nome, string email, string senha, TipoUsuario tipoUsuario = TipoUsuario.USER)
         {
             return new Usuario(nome, email, senha, tipoUsuario);
         }

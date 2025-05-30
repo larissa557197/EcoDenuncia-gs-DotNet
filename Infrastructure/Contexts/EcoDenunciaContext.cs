@@ -1,4 +1,5 @@
-﻿using EcoDenuncia.Infrastructure.Persistence;
+﻿using EcoDenuncia.Infrastructure.Mappings;
+using EcoDenuncia.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 
@@ -13,11 +14,20 @@ namespace EcoDenuncia.Infrastructure.Contexts
         public DbSet<OrgaoPublico> OrgaosPublicos { get; set; }
         public DbSet<Localizacao> Localizacoes { get; set; }
         public DbSet<Bairro> Bairros { get; set; }
-        
+        public DbSet<Cidade> Cidades { get; set; }
+        public DbSet<Estado> Estados { get; set; }
+        public DbSet<AcompanhamentoDenuncia> acompanhamentoDenuncias { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(EcoDenunciaContext).Assembly);
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UsuarioMapping());
+            modelBuilder.ApplyConfiguration(new DenunciaMapping());
+            modelBuilder.ApplyConfiguration(new OrgaoPublicoMapping());
+            modelBuilder.ApplyConfiguration(new LocalizacaoMapping());
+            modelBuilder.ApplyConfiguration(new BairroMapping());
+            modelBuilder.ApplyConfiguration(new CidadeMapping());
+            modelBuilder.ApplyConfiguration(new EstadoMapping());
+            modelBuilder.ApplyConfiguration(new AcompanhamentoDenunciaMapping());
         }
 
     }

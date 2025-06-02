@@ -248,51 +248,51 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
 
 
 ## 🧱 **Arquitetura**:
-### 📁 Controllers
-  Responsabilidade:
-  - Expor endpoints da API ([HttpGet], [HttpPost], etc.).
-  - Receber e responder requisições HTTP.
-  - Chamar métodos do domínio ou persistência para retornar/alterar dados.
-    Exemplo: DenunciaController.cs → controla as rotas /api/denuncia.
+  ### 📁 Controllers
+    Responsabilidade:
+    - Expor endpoints da API ([HttpGet], [HttpPost], etc.).
+    - Receber e responder requisições HTTP.
+    - Chamar métodos do domínio ou persistência para retornar/alterar dados.
+      Exemplo: DenunciaController.cs → controla as rotas /api/denuncia.
 
-### 📁 Domain
-  Responsabilidade:
-  - Representa a lógica de negócio do sistema.
-  - Contém enums e validações específicas de entidades.
+  ### 📁 Domain
+    Responsabilidade:
+    - Representa a lógica de negócio do sistema.
+    - Contém enums e validações específicas de entidades.
   
-  Subpastas:
-  - Enums/StatusDenuncia.cs → enum com os status válidos da denúncia.
-  - Enums/TipoUsuario.cs → enum com perfis de usuário (ADMIN, USER).
-  - Exceptions → (opcional) pode conter exceções personalizadas.
+    Subpastas:
+    - Enums/StatusDenuncia.cs → enum com os status válidos da denúncia.
+    - Enums/TipoUsuario.cs → enum com perfis de usuário (ADMIN, USER).
+    - Exceptions → (opcional) pode conter exceções personalizadas.
 
-### 📁 DTO
-  Responsabilidade:
-  - Armazena os objetos usados para entrada (Request) e saída (Response) na API.
-  - Evita que entidades de domínio sejam expostas diretamente.
+  ### 📁 DTO
+    Responsabilidade:
+    - Armazena os objetos usados para entrada (Request) e saída (Response) na API.
+    - Evita que entidades de domínio sejam expostas diretamente.
   
-  Subpastas:
-  - Request → objetos com dados enviados pelo cliente.
-  - Response → objetos com dados retornados pela API.
+    Subpastas:
+    - Request → objetos com dados enviados pelo cliente.
+    - Response → objetos com dados retornados pela API.
 
-### 📁 Infrastructure
-#### 📁 Contexts
-  Responsabilidade:
-  - Contém a classe que herda de DbContext (ex: EcoDenunciaContext).
-  - Define os DbSets e configura o comportamento do EF Core.
+  ### 📁 Infrastructure
+    #### 📁 Contexts
+      Responsabilidade:
+      - Contém a classe que herda de DbContext (ex: EcoDenunciaContext).
+      - Define os DbSets e configura o comportamento do EF Core.
     
-#### 📁 Mappings
-  Responsabilidade:
-  - Contém as classes de mapeamento do Entity Framework (IEntityTypeConfiguration).
-  - Define nomes de tabelas, tipos, tamanhos e relacionamentos.
-  - Exemplo: DenunciaMapping.cs, UsuarioMapping.cs
+    #### 📁 Mappings
+      Responsabilidade:
+      - Contém as classes de mapeamento do Entity Framework (IEntityTypeConfiguration).
+      - Define nomes de tabelas, tipos, tamanhos e relacionamentos.
+      - Exemplo: DenunciaMapping.cs, UsuarioMapping.cs
     
-#### 📁 Repositories (se usado)
-  Responsabilidade:
-  - Abstrai o acesso a dados.
-  - Ideal para seguir o padrão de Repository Pattern.
-  - Não obrigatório, mas melhora a separação entre domínio e infraestrutura.
+    #### 📁 Repositories (se usado)
+      Responsabilidade:
+      - Abstrai o acesso a dados.
+      - Ideal para seguir o padrão de Repository Pattern.
+      - Não obrigatório, mas melhora a separação entre domínio e infraestrutura.
 
-#### 📁 Migrations
+### 📁 Migrations
   Responsabilidade:
   - Gerenciadas pelo EF Core.
   - Contém arquivos .cs que representam as versões e alterações do banco de dados.

@@ -9,18 +9,19 @@ A **EcoDenuncia** é uma API RESTful desenvolvida para registrar e acompanhar de
 ### 👤 Usuário
 | Verbo | Rota                | Descrição                                |
 |-------|---------------------|------------------------------------------|
-| GET   | `/api/usuario`      | Lista todos os usuários                  |
-| GET   | `/api/usuario/{id}` | Detalha um usuário por ID                |
-| POST  | `/api/usuario`      | Cadastra um novo usuário                 |
-| DELETE| `/api/usuario/{id}` | Remove um usuário do sistema             |
+| GET   | `/api/Usuario`      | Lista todos os usuários                  |
+| POST  | `/api/Usuario`      | Cadastra um novo usuário                 |
+| GET   | `/api/Usuario/{id}` | Detalha um usuário por ID                |
+| PUT   | `/api/Usuario/{id}` | Atualiza dados de um usuário existente   |
+| DELETE| `/api/Usuario/{id}` | Remove um usuário do sistema             |
 
 ### 🏛️ Órgão Público
 | Verbo | Rota                     | Descrição                              |
 |-------|--------------------------|----------------------------------------|
-| GET   | `/api/orgaopublico`      | Lista todos os órgãos públicos         |
-| GET   | `/api/orgaopublico/{id}` | Detalha um órgão público por ID        |
-| POST  | `/api/orgaopublico`      | Cadastra um novo órgão público         |
-| DELETE| `/api/orgaopublico/{id}` | Remove um órgão público                |
+| GET   | `/api/OrgaoPublico`      | Lista todos os órgãos públicos         |
+| GET   | `/api/OrgaoPublico/{id}` | Detalha um órgão público por ID        |
+| POST  | `/api/OrgaoPublico`      | Cadastra um novo órgão público         |
+| DELETE| `/api/OrgaoPublico/{id}` | Remove um órgão público                |
 
 ### 📍 Localização
 | Verbo | Rota                 | Descrição                           |

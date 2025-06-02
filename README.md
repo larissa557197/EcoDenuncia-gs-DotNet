@@ -188,7 +188,7 @@ POST /api/acompanhamentodenuncia
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/EcoDenuncia.git](https://github.com/larissa557197/EcoDenuncia-gs-DotNet.git
+   git clone 
    ```
 
 2. Configure a string de conexão Oracle no `appsettings.json`:
@@ -210,7 +210,7 @@ POST /api/acompanhamentodenuncia
 
 5. Acesse a documentação:
    ```
-   https://localhost:{porta}/swagger
+   http://localhost:{porta}/swagger/index.html
    ```
 
 ---

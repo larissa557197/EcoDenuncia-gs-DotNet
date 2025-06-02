@@ -102,14 +102,14 @@ POST /api/acompanhamentodenuncia
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/EcoDenuncia.git
+   git clone https://github.com/seu-usuario/EcoDenuncia.git](https://github.com/larissa557197/EcoDenuncia-gs-DotNet.git
    ```
 
 2. Configure a string de conexão Oracle no `appsettings.json`:
    ```json
    "ConnectionStrings": {
-     "Oracle": "Data Source=localhost:1521/ORCL;User Id=USUARIO;Password=SENHA;"
-   }
+  "Oracle": "Data Source=oracle.fiap.com.br:1521/orcl;User ID=RMXXXXXX;Password=XXXXXX;"
+}
    ```
 
 3. Aplique as migrations:

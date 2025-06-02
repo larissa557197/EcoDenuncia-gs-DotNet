@@ -20,6 +20,18 @@
             IdEstado = idEstado;
         }
 
+        public void SetNome(string nome)
+        {
+            ValidarNome(nome);
+            Nome = nome;
+        }
+
+        public void SetIdEstado(Guid idEstado)
+        {
+            IdEstado = idEstado;
+                
+        }
+
         private void ValidarNome(string nome)
         {
             if (string.IsNullOrWhiteSpace(nome))

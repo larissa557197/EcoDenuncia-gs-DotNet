@@ -47,6 +47,16 @@
 
         }
 
+        public void AtualizaDenuncia(Guid idUsuario, Guid idLocalizacao, Guid idOrgaoPublico, DateTime dataHora, string descricao)
+        {
+            IdUsuario = idUsuario;
+            IdLocalizacao = idLocalizacao;
+            IdOrgaoPublico = idOrgaoPublico;
+            DataHora = dataHora;
+            ValidarDescricao(descricao);
+            Descricao = descricao;
+        }
+
         internal static Denuncia Create(Guid idUsuario, Guid idLocalizacao, Guid idOrgaoPublico, DateTime dataHora, string descricao)
         {
             return new Denuncia(idUsuario, idLocalizacao, idOrgaoPublico, dataHora, descricao);

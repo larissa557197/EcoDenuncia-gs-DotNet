@@ -31,6 +31,35 @@
             IdBairro = idBairro;
         }
 
+        public void SetLogradouro(string logradouro)
+        {
+            ValidarLogradouro(logradouro);
+            Logradouro = logradouro;
+        }
+
+        public void SetNumero(string numero)
+        {
+            ValidarNumero(numero);
+            Numero = numero;
+        }
+
+        public void SetComplemento(string complemento)
+        {
+            Complemento = complemento;
+        }
+
+        public void SetCep(string cep)
+        {
+            ValidarCep(cep);
+            Cep = cep;
+        }
+
+        public void SetIdBairro(Guid idBairro)
+        {
+            IdBairro = idBairro;
+        }
+
+
         private void ValidarLogradouro(string logradouro)
         {
             if (string.IsNullOrWhiteSpace(logradouro))

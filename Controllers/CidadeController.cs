@@ -85,6 +85,39 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
+        /// Atualiza os dados de uma cidade existente
+        /// </summary>
+        [HttpPut("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<CidadeResponse>> PutCidade(Guid id, CidadeRequest request)
+        {
+            var cidade = await _context.Cidades.FindAsync(id);
+            if (cidade == null)
+                return NotFound();
+
+            cidade.SetNome(request.Nome);
+            cidade.SetIdEstado(request.IdEstado);
+
+            _context.Cidades.Update(cidade);
+            await _context.SaveChangesAsync();
+
+            var estado = await _context.Estados.FindAsync(cidade.IdEstado);
+
+            var response = new CidadeResponse
+            {
+                IdCidade = cidade.IdCidade,
+                Nome = cidade.Nome,
+                IdEstado = cidade.IdEstado,
+                NomeEstado = estado?.Nome
+            };
+
+            return Ok(response);
+        }
+
+
+
+        /// <summary>
         /// Remove uma cidade pelo Id
         /// </summary>
         [HttpDelete("{id}")]

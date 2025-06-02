@@ -35,9 +35,6 @@ namespace EcoDenuncia.Controllers
                 .Select(denuncia => new DenunciaResponse
                 {
                     IdDenuncia = denuncia.IdDenuncia,
-                    IdUsuario = denuncia.IdUsuario,
-                    IdLocalizacao = denuncia.IdLocalizacao,
-                    IdOrgaoPublico = denuncia.IdOrgaoPublico,
                     DataHora = denuncia.DataHora,
                     Descricao = denuncia.Descricao
                 })
@@ -71,9 +68,6 @@ namespace EcoDenuncia.Controllers
             var dto = new DenunciaResponse
             {
                 IdDenuncia = denuncia.IdDenuncia,
-                IdUsuario = denuncia.IdUsuario,
-                IdLocalizacao = denuncia.IdLocalizacao,
-                IdOrgaoPublico = denuncia.IdOrgaoPublico,
                 DataHora = denuncia.DataHora,
                 Descricao = denuncia.Descricao
             };
@@ -109,15 +103,72 @@ namespace EcoDenuncia.Controllers
             var response = new DenunciaResponse
             {
                 IdDenuncia = denuncia.IdDenuncia,
-                IdUsuario = denuncia.IdUsuario,
-                IdLocalizacao = denuncia.IdLocalizacao,
-                IdOrgaoPublico = denuncia.IdOrgaoPublico,
                 DataHora = denuncia.DataHora,
                 Descricao = denuncia.Descricao
             };
 
             return CreatedAtAction(nameof(GetDenuncia), new { id = denuncia.IdDenuncia }, response);
         }
+
+        /// <summary>
+        /// Atualiza os dados de uma denúncia existente
+        /// </summary>
+        /// <param name="id">Id da denúncia</param>
+        /// <param name="request">Dados atualizados da denúncia</param>
+        /// <response code="200">Denúncia atualizada com sucesso</response>
+        /// <response code="400">Dados inválidos</response>
+        /// <response code="404">Denúncia não encontrada</response>
+        [HttpPut("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<DenunciaResponse>> PutDenuncia(Guid id, DenunciaRequest request)
+        {
+            var denuncia = await _context.Denuncias.FindAsync(id);
+            if (denuncia == null)
+                return NotFound();
+
+            var usuario = await _context.Usuarios.FindAsync(request.IdUsuario);
+            if (usuario == null) return BadRequest("Usuário não encontrado.");
+
+            var localizacao = await _context.Localizacoes.FindAsync(request.IdLocalizacao);
+            if (localizacao == null) return BadRequest("Localização não encontrada.");
+
+            var orgao = await _context.OrgaosPublicos.FindAsync(request.IdOrgaoPublico);
+            if (orgao == null) return BadRequest("Órgão público não encontrado.");
+
+            denuncia.AtualizaDenuncia(request.IdUsuario, request.IdLocalizacao, request.IdOrgaoPublico, request.DataHora, request.Descricao);
+
+            await _context.SaveChangesAsync();
+
+            //  includes necessários
+            var denunciaAtualizada = await _context.Denuncias
+                .Include(d => d.Usuario)
+                .Include(d => d.OrgaoPublico)
+                .Include(d => d.Localizacao)
+                    .ThenInclude(l => l.Bairro)
+                        .ThenInclude(b => b.Cidade)
+                            .ThenInclude(c => c.Estado)
+                .FirstOrDefaultAsync(d => d.IdDenuncia == id);
+
+            var response = new DenunciaResponse
+            {
+                IdDenuncia = denunciaAtualizada.IdDenuncia,
+                DataHora = denunciaAtualizada.DataHora,
+                Descricao = denunciaAtualizada.Descricao,
+                NomeUsuario = denunciaAtualizada.Usuario.Nome,
+                NomeOrgaoPublico = denunciaAtualizada.OrgaoPublico.Nome,
+                Logradouro = denunciaAtualizada.Localizacao.Logradouro,
+                Numero = denunciaAtualizada.Localizacao.Numero,
+                Bairro = denunciaAtualizada.Localizacao.Bairro.Nome,
+                Cidade = denunciaAtualizada.Localizacao.Bairro.Cidade.Nome,
+                Estado = denunciaAtualizada.Localizacao.Bairro.Cidade.Estado.Nome
+            };
+
+            return Ok(response);
+        }
+
+
 
         /// <summary>
         /// Remove uma denúncia pelo Id

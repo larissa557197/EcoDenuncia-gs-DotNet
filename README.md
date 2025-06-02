@@ -33,7 +33,7 @@ A **EcoDenuncia** é uma API RESTful desenvolvida para registrar e acompanhar de
 | PUT   | `/api/Localizacao/{id}` | Atualiza dados de uma localização existente   |
 | DELETE| `/api/Localizacao/{id}` | Remove uma localização                        |
 
-### 🧾 Estados
+### 🗺️ Estados
 | Verbo | Rota                     | Descrição                               |
 |-------|--------------------------|-----------------------------------------|
 | GET   | `/api/Estado`            | Lista todos os estados                  |
@@ -51,7 +51,7 @@ A **EcoDenuncia** é uma API RESTful desenvolvida para registrar e acompanhar de
 | PUT   | `/api/Denuncia/{id}`| Atualiza dados de uma denúncia existente    |
 | DELETE| `/api/Denuncia/{id}`| Remove uma denúncia                         |
 
-### 🧾 Cidades
+### 🏙️ Cidades
 | Verbo | Rota                | Descrição                                 |
 |-------|---------------------|-------------------------------------------|
 | GET   | `/api/Cidade`       | Lista todas as cidades                    |
@@ -60,7 +60,7 @@ A **EcoDenuncia** é uma API RESTful desenvolvida para registrar e acompanhar de
 | PUT   | `/api/Cidade/{id}`  | Atualiza dados de uma cidade existente    |
 | DELETE| `/api/Cidade/{id}`  | Remove uma cidade                         |
 
-### 🧾 Bairros
+### 🏘️ Bairros
 | Verbo | Rota                | Descrição                                |
 |-------|---------------------|------------------------------------------|
 | GET   | `/api/Bairro`       | Lista todos os bairros                   |

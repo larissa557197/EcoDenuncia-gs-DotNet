@@ -13,9 +13,18 @@ namespace EcoDenuncia.Infrastructure.Mappings
             builder
                 .HasKey(b => b.IdBairro);
 
+            builder
+                .Property(b => b.IdBairro)
+                .HasColumnName("id_bairro");
+
             builder.Property(b => b.Nome)
+                .HasColumnName("nome")
                 .HasMaxLength(100)
                 .IsRequired();
+
+            builder
+                .Property(b => b.IdCidade)
+                .HasColumnName("id_cidade");
 
             builder
                 .HasOne(b => b.Cidade)

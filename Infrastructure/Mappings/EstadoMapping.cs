@@ -14,19 +14,21 @@ namespace EcoDenuncia.Infrastructure.Mappings
                 .HasKey(e => e.IdEstado);
 
             builder
-                .Property(e => e.Nome)
-                .HasMaxLength(100)
-                .IsRequired();
+                .Property(e => e.IdEstado)
+                .HasColumnName("id_estado");
+
             builder
-                .Property(e => e.Uf)
-                .HasMaxLength(2)
+                .Property(e => e.Nome)
+                .HasColumnName("nome")
+                .HasMaxLength(100)
                 .IsRequired();
 
             builder
-                .HasOne(e => e.Cidades)
-                .WithMany()
-                .HasForeignKey(c => c.IdEstado)
-                .OnDelete(DeleteBehavior.Restrict);
+                .Property(e => e.Uf)
+                .HasColumnName("uf")
+                .HasMaxLength(2)
+                .IsRequired();
+
         }
     }
 }

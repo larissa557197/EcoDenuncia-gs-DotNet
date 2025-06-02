@@ -8,19 +8,25 @@ namespace EcoDenuncia.Infrastructure.Mappings
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<OrgaoPublico> builder)
         {
             builder
-                .ToTable("TBL_ORGAO_PUBLICO");
+                .ToTable("TBL_ORGAOS_PUBLICOS");
 
             builder
                 .HasKey(o => o.IdOrgaoPublico);
 
             builder
+                .Property(o => o.IdOrgaoPublico)
+                .HasColumnName("id_orgao"); 
+
+            builder
                 .Property(o => o.Nome)
+                .HasColumnName("nome")
                 .HasMaxLength(150)
                 .IsRequired();
 
             builder
                 .Property(o => o.AreaAtuacao)
-                .HasMaxLength(8)
+                .HasColumnName("area_atuacao")
+                .HasMaxLength(20)
                 .IsRequired();
         }
     }

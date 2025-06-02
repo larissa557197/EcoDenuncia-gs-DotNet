@@ -15,12 +15,30 @@ namespace EcoDenuncia.Infrastructure.Mappings
                 .HasKey(d => d.IdDenuncia);
 
             builder
-                .Property(d => d.Descricao)
-                .HasMaxLength(250)
-                .IsRequired();
+                .Property(d => d.IdDenuncia)
+                .HasColumnName("id_denuncia");
+
+            builder
+                .Property(d => d.IdUsuario)
+                .HasColumnName("id_usuario");
+
+            builder
+                .Property(d => d.IdLocalizacao)
+                .HasColumnName("id_localizacao");
+
+            builder
+                .Property(d => d.IdOrgaoPublico)
+                .HasColumnName("id_orgao");
 
             builder
                 .Property(d => d.DataHora)
+                .HasColumnName("data_hora")
+                .IsRequired();
+
+            builder
+                .Property(d => d.Descricao)
+                .HasColumnName("descricao")
+                .HasMaxLength(250)
                 .IsRequired();
 
             builder

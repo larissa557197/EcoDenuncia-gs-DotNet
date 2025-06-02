@@ -188,7 +188,7 @@ POST /api/acompanhamentodenuncia
 
 1. Clone o repositório:
    ```bash
-   git clone 
+   git clone https://github.com/larissa557197/EcoDenuncia-gs-DotNet.git 
    ```
 
 2. Configure a string de conexão Oracle no `appsettings.json` e, ou no `appsettings.Development.json` :

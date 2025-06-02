@@ -247,8 +247,8 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
 | Cidade       |      Estado                  |    N:1    |
 
 
-- 🧱 **Arquitetura**:
-- 📁 Controllers
+## 🧱 **Arquitetura**:
+###📁 Controllers
   Responsabilidade:
   - Expor endpoints da API ([HttpGet], [HttpPost], etc.).
   - Receber e responder requisições HTTP.

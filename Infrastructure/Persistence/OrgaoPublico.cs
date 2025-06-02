@@ -18,6 +18,16 @@
             Nome = nome;
             AreaAtuacao = areaAtuacao;
         }
+
+        public void AtualizarOrgaoPublico(string nome, string areaAtuacao)
+        {
+            ValidarNome(nome);
+            ValidarAreaAtuacao(areaAtuacao);
+
+            Nome = nome;
+            AreaAtuacao = areaAtuacao;
+        }
+
         private void ValidarNome(string nome)
         {
             if (string.IsNullOrWhiteSpace(nome))

@@ -99,6 +99,40 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
+        /// Atualiza os dados de um usuário existente
+        /// </summary>
+        /// <param name="id">Id do usuário</param>
+        /// <param name="request">Dados atualizados</param>
+        /// <response code="200">Usuário atualizado com sucesso</response>
+        /// <response code="404">Usuário não encontrado</response>
+        [HttpPut("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<UsuarioResponse>> PutUsuario(Guid id, UsuarioRequest request)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null)
+                return NotFound();
+
+            usuario.AtualizarUsuario(request.Nome, request.Email, request.Senha,
+                Enum.TryParse(request.TipoUsuario, true, out TipoUsuario tipo) ? tipo : TipoUsuario.USER);
+
+            _context.Usuarios.Update(usuario);
+            await _context.SaveChangesAsync();
+
+            var response = new UsuarioResponse
+            {
+                IdUsuario = usuario.IdUsuario,
+                Nome = usuario.Nome,
+                Email = usuario.Email,
+                TipoUsuario = usuario.TipoUsuario.ToString()
+            };
+
+            return Ok(response);
+        }
+
+
+        /// <summary>
         /// Deleta usuário pelo Id
         /// </summary>
         /// <param name="id">Id do usuário</param>

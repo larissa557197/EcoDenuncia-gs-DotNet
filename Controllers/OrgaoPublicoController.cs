@@ -87,6 +87,38 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
+        /// Atualiza os dados de um órgão público existente
+        /// </summary>
+        /// <param name="id">Id do órgão público</param>
+        /// <param name="request">Dados atualizados</param>
+        /// <response code="200">Órgão atualizado com sucesso</response>
+        /// <response code="404">Órgão não encontrado</response>
+        [HttpPut("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<OrgaoPublicoResponse>> PutOrgaoPublico(Guid id, OrgaoPublicoRequest request)
+        {
+            var orgao = await _context.OrgaosPublicos.FindAsync(id);
+            if (orgao == null)
+                return NotFound();
+
+            orgao.AtualizarOrgaoPublico(request.Nome, request.AreaAtuacao); // método sugerido abaixo
+
+            _context.OrgaosPublicos.Update(orgao);
+            await _context.SaveChangesAsync();
+
+            var response = new OrgaoPublicoResponse
+            {
+                IdOrgaoPublico = orgao.IdOrgaoPublico,
+                Nome = orgao.Nome,
+                AreaAtuacao = orgao.AreaAtuacao
+            };
+
+            return Ok(response);
+        }
+
+
+        /// <summary>
         /// Remove um órgão público pelo Id
         /// </summary>
         [HttpDelete("{id}")]

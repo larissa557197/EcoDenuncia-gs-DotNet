@@ -28,6 +28,15 @@ namespace EcoDenuncia.Infrastructure.Persistence
             TipoUsuario = tipoUsuario;
         }
 
+        public void AtualizarUsuario(string nome, string email, string senha, TipoUsuario tipoUsuario)
+        {
+            ValidarNome(nome);
+            ValidarEmail(email);
+            ValidarSenha(senha);
+            TipoUsuario = tipoUsuario;
+        }
+
+
         private void ValidarNome(string nome)
         {
             if (string.IsNullOrWhiteSpace(nome))

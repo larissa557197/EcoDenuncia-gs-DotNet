@@ -20,6 +20,14 @@
             Nome = nome;
             IdCidade = idCidade;
         }
+
+        public void AtualizarBairro(string nome, Guid idCidade)
+        {
+            ValidarNome(nome);
+            Nome = nome;
+            IdCidade = idCidade;
+        }
+
         private void ValidarNome(string nome)
         {
             if (string.IsNullOrWhiteSpace(nome))

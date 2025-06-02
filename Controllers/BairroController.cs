@@ -86,6 +86,34 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
+        /// Atualiza um bairro existente
+        /// </summary>
+        [HttpPut("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<BairroResponse>> PutBairro(Guid id, BairroRequest request)
+        {
+            var bairro = await _context.Bairros.FindAsync(id);
+            if (bairro == null)
+                return NotFound();
+
+            bairro.AtualizarBairro(request.Nome, request.IdCidade);
+            
+
+            await _context.SaveChangesAsync();
+
+            var response = new BairroResponse
+            {
+                IdBairro = bairro.IdBairro,
+                Nome = bairro.Nome,
+                IdCidade = bairro.IdCidade
+            };
+
+            return Ok(response);
+        }
+
+
+        /// <summary>
         /// Remove um bairro pelo Id
         /// </summary>
         [HttpDelete("{id}")]

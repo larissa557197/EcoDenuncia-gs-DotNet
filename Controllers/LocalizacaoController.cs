@@ -113,6 +113,45 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
+        /// Atualiza uma localização existente
+        /// </summary>
+        /// <param name="id">Id da localização</param>
+        /// <param name="request">Dados atualizados da localização</param>
+        /// <response code="200">Localização atualizada com sucesso</response>
+        /// <response code="404">Localização não encontrada</response>
+        [HttpPut("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<LocalizacaoResponse>> PutLocalizacao(Guid id, [FromBody] LocalizacaoRequest request)
+        {
+            var local = await _context.Localizacoes.FindAsync(id);
+
+            if (local == null)
+                return NotFound();
+
+            local.SetLogradouro(request.Logradouro);
+            local.SetNumero(request.Numero);
+            local.SetComplemento(request.Complemento);
+            local.SetCep(request.Cep);
+            local.SetIdBairro(request.IdBairro);
+
+            await _context.SaveChangesAsync();
+
+            var response = new LocalizacaoResponse
+            {
+                IdLocalizacao = local.IdLocalização,
+                Logradouro = local.Logradouro,
+                Numero = local.Numero,
+                Complemento = local.Complemento,
+                Cep = local.Cep,
+                IdBairro = local.IdBairro
+            };
+
+            return Ok(response);
+        }
+
+
+        /// <summary>
         /// Remove uma localização pelo Id
         /// </summary>
         /// <param name="id">Id da localização</param>

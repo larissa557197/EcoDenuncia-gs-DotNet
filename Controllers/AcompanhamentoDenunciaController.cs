@@ -99,6 +99,39 @@ namespace EcoDenuncia.Controllers
             return CreatedAtAction(nameof(GetAcompanhamento), new { id = acompanhamento.IdAcompanhamento }, response);
         }
 
+        /// <summary>
+        /// Atualiza um acompanhamento de denúncia existente
+        /// </summary>
+        [HttpPut("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<AcompanhamentoDenunciaResponse>> PutAcompanhamento(Guid id, AcompanhamentoDenunciaRequest request)
+        {
+            var acompanhamento = await _context.acompanhamentoDenuncias.FindAsync(id);
+            if (acompanhamento == null)
+                return NotFound();
+
+            if (!Enum.TryParse<StatusDenuncia>(request.Status, true, out var statusEnum))
+            {
+                return BadRequest("Status inválido.");
+            }
+
+            acompanhamento.AtualizarAcompanhamento(statusEnum, request.DataAtualizacao, request.Observacao);
+            _context.acompanhamentoDenuncias.Update(acompanhamento);
+            await _context.SaveChangesAsync();
+
+            var response = new AcompanhamentoDenunciaResponse
+            {
+                IdAcompanhamento = acompanhamento.IdAcompanhamento,
+                Status = acompanhamento.Status.ToString(),
+                DataAtualizacao = acompanhamento.DataAtualizacao,
+                Observacao = acompanhamento.Observacao,
+                IdDenuncia = acompanhamento.IdDenuncia
+            };
+
+            return Ok(response);
+        }
+
 
         /// <summary>
         /// Remove acompanhamento pelo Id

@@ -19,6 +19,15 @@
             Uf = uf;
         }
 
+        public void AtualizarEstado(string nome, string uf)
+        {
+            ValidarNome(nome);
+            ValidarUf(uf);
+            Nome = nome;
+            Uf = uf;
+        }
+
+
         private void ValidarNome(string nome)
         {
             if (string.IsNullOrWhiteSpace(nome))

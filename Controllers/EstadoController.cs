@@ -85,6 +85,34 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
+        /// Atualiza um estado existente
+        /// </summary>
+        [HttpPut("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<ActionResult<EstadoResponse>> PutEstado(Guid id, EstadoRequest request)
+        {
+            var estado = await _context.Estados.FindAsync(id);
+            if (estado == null)
+                return NotFound();
+
+            estado.AtualizarEstado(request.Nome, request.Uf); // supondo que você tem esse método na entidade
+
+            _context.Estados.Update(estado);
+            await _context.SaveChangesAsync();
+
+            var response = new EstadoResponse
+            {
+                IdEstado = estado.IdEstado,
+                Nome = estado.Nome,
+                Uf = estado.Uf
+            };
+
+            return Ok(response);
+        }
+
+
+        /// <summary>
         /// Remove um estado pelo Id
         /// </summary>
         [HttpDelete("{id}")]

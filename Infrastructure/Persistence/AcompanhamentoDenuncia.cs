@@ -27,6 +27,13 @@ namespace EcoDenuncia.Infrastructure.Persistence
 
         }
 
+        public void AtualizarAcompanhamento(StatusDenuncia status, DateTime dataAtualizacao, string observacao)
+        {
+            Status = status;
+            DataAtualizacao = dataAtualizacao;
+            Observacao = observacao;
+        }
+
         internal static AcompanhamentoDenuncia Create(StatusDenuncia status, DateTime dataAtualizacao, string observacao, Guid idDenuncia)
         {
             return new AcompanhamentoDenuncia(status, dataAtualizacao, observacao, idDenuncia);

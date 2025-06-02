@@ -234,15 +234,16 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
               - 🏙️ Cidade:
                     IdEstado → 🔗 Estado.IdEstado
 
-   ###🧩 Relações:
-        | Entidade     | Relacionamento com |   Tipo    |
-        |--------------|--------------------|-----------|
-        | Denuncia     |      Usuario       |    N:1    |
-        | Denuncia     |      Localizacao   |    N:1    |
-        | Denuncia     |      OrgaoPublico  |    N:1    |
-        | Localizacao  |      Bairro        |    N:1    |
-        | Bairro       |      Cidade        |    N:1    |
-        | Cidade       |      Estado        |    N:1    |
+###🧩 Relações:
+
+| Entidade     | Relacionamento com |   Tipo    |
+|--------------|--------------------|-----------|
+| Denuncia     |      Usuario       |    N:1    |
+| Denuncia     |      Localizacao   |    N:1    |
+| Denuncia     |      OrgaoPublico  |    N:1    |
+| Localizacao  |      Bairro        |    N:1    |
+| Bairro       |      Cidade        |    N:1    |
+| Cidade       |      Estado        |    N:1    |
 
   
        

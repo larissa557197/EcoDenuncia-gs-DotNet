@@ -108,8 +108,8 @@ POST /api/acompanhamentodenuncia
 2. Configure a string de conexão Oracle no `appsettings.json`:
    ```json
    "ConnectionStrings": {
-  "Oracle": "Data Source=oracle.fiap.com.br:1521/orcl;User ID=RMXXXXXX;Password=XXXXXX;"
-}
+    "Oracle": "Data Source=oracle.fiap.com.br:1521/orcl;User ID=RMXXXXXX;Password=XXXXXX;"
+   }
    ```
 
 3. Aplique as migrations:

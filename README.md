@@ -246,16 +246,14 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
 | Bairro       |      Cidade                  |    N:1    |
 | Cidade       |      Estado                  |    N:1    |
 
-  
-       
-- 🎯 **Diagrama de Casos de Uso**:
-        Mostra os fluxos principais de uso do sistema (registro de denúncias, criação de usuários, acompanhamento etc.).
 
-- 🧱 **Camadas da Arquitetura**:
-  - `Domain` – entidades e regras de negócio
-  - `DTOs` – objetos de transporte
-  - `Controllers` – endpoints da API
-  - `Infrastructure` – mapeamento ORM e contexto
+- 🧱 **Arquitetura**:
+  - 📁 Controllers
+        Responsabilidade:
+        - Expor endpoints da API ([HttpGet], [HttpPost], etc.).
+        - Receber e responder requisições HTTP.
+        - Chamar métodos do domínio ou persistência para retornar/alterar dados.
+          Exemplo: DenunciaController.cs → controla as rotas /api/denuncia.
 
 ---
 

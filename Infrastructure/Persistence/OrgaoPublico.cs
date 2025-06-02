@@ -12,11 +12,11 @@
         public OrgaoPublico(string nome, string areaAtuacao)
         {
             ValidarNome(nome);
-            ValidarAreaAtuacao(AreaAtuacao);
+            ValidarAreaAtuacao(areaAtuacao);
             
             IdOrgaoPublico = Guid.NewGuid();
             Nome = nome;
-            AreaAtuacao = areaAtuacao;
+            AreaAtuacao = areaAtuacao.Trim();
         }
 
         public void AtualizarOrgaoPublico(string nome, string areaAtuacao)
@@ -33,15 +33,17 @@
             if (string.IsNullOrWhiteSpace(nome))
                 throw new Exception("Nome do órgão público não pode ser vazio.");
             if (nome.Length > 150)
-                throw new Exception("Nome do órgão público deve ter no máximo 100 caracteres.");
+                throw new Exception("Nome do órgão público deve ter no máximo 150 caracteres.");
+
         }
 
         private void ValidarAreaAtuacao(string areaAtuacao)
         {
             if (string.IsNullOrWhiteSpace(areaAtuacao))
                 throw new Exception("Área de atuação não pode ser vazia.");
-            if (areaAtuacao.Length > 8)
-                throw new Exception("Área de atuação deve ter no máximo 8 caracteres.");
+            if (areaAtuacao.Length > 100)
+                throw new Exception("Área de atuação deve ter no máximo 100 caracteres.");
+
         }
         internal static OrgaoPublico Create(string nome, string areaAtuacao)
         {

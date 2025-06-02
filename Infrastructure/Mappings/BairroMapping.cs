@@ -24,7 +24,8 @@ namespace EcoDenuncia.Infrastructure.Mappings
 
             builder
                 .Property(b => b.IdCidade)
-                .HasColumnName("id_cidade");
+                .HasColumnName("id_cidade")
+                .IsRequired();
 
             builder
                 .HasOne(b => b.Cidade)

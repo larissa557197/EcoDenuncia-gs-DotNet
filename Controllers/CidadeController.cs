@@ -28,15 +28,18 @@ namespace EcoDenuncia.Controllers
         public async Task<ActionResult<IEnumerable<CidadeResponse>>> GetCidades()
         {
             var cidades = await _context.Cidades
-                .Select(c => new CidadeResponse
-                {
-                    IdCidade = c.IdCidade,
-                    Nome = c.Nome,
-                    IdEstado = c.IdEstado
-                })
+                .Include(c => c.Estado) // INCLUI o estado vinculado
                 .ToListAsync();
 
-            return Ok(cidades);
+            var cidadesDto = cidades.Select(c => new CidadeResponse
+            {
+                IdCidade = c.IdCidade,
+                Nome = c.Nome,
+                IdEstado = c.IdEstado,
+                NomeEstado = c.Estado?.Nome // agora preenche corretamente
+            }).ToList();
+
+            return Ok(cidadesDto);
         }
 
         /// <summary>

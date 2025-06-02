@@ -2,7 +2,7 @@
 {
     public enum StatusDenuncia
     {
-        Aberto,
+        Pendente,
         EmAndamento,
         Concluido,
     }

@@ -31,14 +31,28 @@ namespace EcoDenuncia.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         public async Task<ActionResult<IEnumerable<DenunciaResponse>>> GetDenuncias()
         {
-            var denunciasDto = await _context.Denuncias
-                .Select(denuncia => new DenunciaResponse
-                {
-                    IdDenuncia = denuncia.IdDenuncia,
-                    DataHora = denuncia.DataHora,
-                    Descricao = denuncia.Descricao
-                })
+            var denuncias = await _context.Denuncias
+                .Include(d => d.Usuario)
+                .Include(d => d.OrgaoPublico)
+                .Include(d => d.Localizacao)
+                    .ThenInclude(l => l.Bairro)
+                        .ThenInclude(b => b.Cidade)
+                            .ThenInclude(c => c.Estado)
                 .ToListAsync();
+
+            var denunciasDto = denuncias.Select(d => new DenunciaResponse
+            {
+                IdDenuncia = d.IdDenuncia,
+                DataHora = d.DataHora,
+                Descricao = d.Descricao,
+                NomeUsuario = d.Usuario?.Nome,
+                NomeOrgaoPublico = d.OrgaoPublico?.Nome,
+                Logradouro = d.Localizacao?.Logradouro,
+                Numero = d.Localizacao?.Numero,
+                Bairro = d.Localizacao?.Bairro?.Nome,
+                Cidade = d.Localizacao?.Bairro?.Cidade?.Nome,
+                Estado = d.Localizacao?.Bairro?.Cidade?.Estado?.Nome
+            }).ToList();
 
             return Ok(denunciasDto);
         }
@@ -56,24 +70,33 @@ namespace EcoDenuncia.Controllers
         {
             var denuncia = await _context.Denuncias
                 .Include(d => d.Usuario)
-                .Include(d => d.Localizacao)
                 .Include(d => d.OrgaoPublico)
-                .SingleOrDefaultAsync(d => d.IdDenuncia == id);
+                .Include(d => d.Localizacao)
+                    .ThenInclude(l => l.Bairro)
+                        .ThenInclude(b => b.Cidade)
+                            .ThenInclude(c => c.Estado)
+                .FirstOrDefaultAsync(d => d.IdDenuncia == id);
 
             if (denuncia == null)
-            {
                 return NotFound();
-            }
 
             var dto = new DenunciaResponse
             {
                 IdDenuncia = denuncia.IdDenuncia,
                 DataHora = denuncia.DataHora,
-                Descricao = denuncia.Descricao
+                Descricao = denuncia.Descricao,
+                NomeUsuario = denuncia.Usuario?.Nome,
+                NomeOrgaoPublico = denuncia.OrgaoPublico?.Nome,
+                Logradouro = denuncia.Localizacao?.Logradouro,
+                Numero = denuncia.Localizacao?.Numero,
+                Bairro = denuncia.Localizacao?.Bairro?.Nome,
+                Cidade = denuncia.Localizacao?.Bairro?.Cidade?.Nome,
+                Estado = denuncia.Localizacao?.Bairro?.Cidade?.Estado?.Nome
             };
 
             return Ok(dto);
         }
+
 
         /// <summary>
         /// Cria uma nova denúncia

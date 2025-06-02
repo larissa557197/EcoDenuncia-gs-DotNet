@@ -158,4 +158,4 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
 
 ---
 
-> Projeto acadêmico desenvolvido na FIAP para o Challenge 2025 — Sprint 1
+> Projeto acadêmico desenvolvido na FIAP para a Global Solution 2025 — 1º Semestre

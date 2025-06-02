@@ -222,6 +222,27 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
 - 🗺️ **Diagrama Entidade-Relacionamento (DER)**:
         - Representa as relações entre:
            `Denuncia`, `Usuario`, `Localizacao`, `OrgaoPublico`, `Acompanhamento`, `Bairro`, `Cidade` e `Estado`.
+        - 📦 Entidades e Relacionamentos
+              - 🧾 Denuncia:
+                    IdUsuario → 🔗 Usuario.IdUsuario
+                    IdLocalizacao → 🔗 Localizacao.IdLocalizacao
+                    IdOrgaoPublico → 🔗 OrgaoPublico.IdOrgaoPublico
+              - 📍 Localizacao:
+                    IdBairro → 🔗 Bairro.IdBairro
+              - 🏘️ Bairro:
+                    IdCidade → 🔗 Cidade.IdCidade
+              - 🏙️ Cidade:
+                    IdEstado → 🔗 Estado.IdEstado
+
+  - 🧩 Relações:
+        |  Entidade     |  Relacionamento com   |  Tipo  |
+        |------------------------------------------------|
+        |  Denuncia     |	  Usuario             |   N:1  |
+        |  Denuncia     |	  Localizacao         |   N:1  |
+        |  Denuncia	    |  OrgaoPublico         |	  N:1  |
+        |  Localizacao  |  Bairro               |	  N:1  |
+        |  Bairro	      |  Cidade               |	  N:1  |
+        |  Cidade	      |  Estado               |	  N:1  |
 
 - 🎯 **Diagrama de Casos de Uso**:
         Mostra os fluxos principais de uso do sistema (registro de denúncias, criação de usuários, acompanhamento etc.).

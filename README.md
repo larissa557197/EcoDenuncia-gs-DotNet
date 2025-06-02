@@ -234,7 +234,7 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
               - 🏙️ Cidade:
                     IdEstado → 🔗 Estado.IdEstado
 
-###🧩 Relações:
+### 🧩 Relações:
 
 | Entidade     | Relacionamento com           |   Tipo    |
 |--------------|------------------------------|-----------|
@@ -248,7 +248,7 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
 
 
 ## 🧱 **Arquitetura**:
-###📁 Controllers
+### 📁 Controllers
   Responsabilidade:
   - Expor endpoints da API ([HttpGet], [HttpPost], etc.).
   - Receber e responder requisições HTTP.

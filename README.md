@@ -248,12 +248,12 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
 
 
 - 🧱 **Arquitetura**:
-  - 📁 Controllers
-        Responsabilidade:
-        - Expor endpoints da API ([HttpGet], [HttpPost], etc.).
-        - Receber e responder requisições HTTP.
-        - Chamar métodos do domínio ou persistência para retornar/alterar dados.
-          Exemplo: DenunciaController.cs → controla as rotas /api/denuncia.
+- 📁 Controllers
+  Responsabilidade:
+  - Expor endpoints da API ([HttpGet], [HttpPost], etc.).
+  - Receber e responder requisições HTTP.
+  - Chamar métodos do domínio ou persistência para retornar/alterar dados.
+    Exemplo: DenunciaController.cs → controla as rotas /api/denuncia.
 
 ---
 

@@ -247,66 +247,71 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
 | Cidade       |      Estado                  |    N:1    |
 
 
-## 🧱 **Arquitetura**:
-  ### 📁 Controllers
-    Responsabilidade:
-    - Expor endpoints da API ([HttpGet], [HttpPost], etc.).
-    - Receber e responder requisições HTTP.
-    - Chamar métodos do domínio ou persistência para retornar/alterar dados.
-      Exemplo: DenunciaController.cs → controla as rotas /api/denuncia.
+## 🧠 Arquitetura em Camadas
 
-  ### 📁 Domain
-    Responsabilidade:
-    - Representa a lógica de negócio do sistema.
-    - Contém enums e validações específicas de entidades.
-  
-    Subpastas:
-    - Enums/StatusDenuncia.cs → enum com os status válidos da denúncia.
-    - Enums/TipoUsuario.cs → enum com perfis de usuário (ADMIN, USER).
-    - Exceptions → (opcional) pode conter exceções personalizadas.
+A solução segue o modelo de arquitetura em camadas com responsabilidades bem definidas:
 
-  ### 📁 DTO
-    Responsabilidade:
-    - Armazena os objetos usados para entrada (Request) e saída (Response) na API.
-    - Evita que entidades de domínio sejam expostas diretamente.
-  
-    Subpastas:
-    - Request → objetos com dados enviados pelo cliente.
-    - Response → objetos com dados retornados pela API.
+### 📁 Controllers
 
-  ### 📁 Infrastructure
-    #### 📁 Contexts
-      Responsabilidade:
-      - Contém a classe que herda de DbContext (ex: EcoDenunciaContext).
-      - Define os DbSets e configura o comportamento do EF Core.
-    
-    #### 📁 Mappings
-      Responsabilidade:
-      - Contém as classes de mapeamento do Entity Framework (IEntityTypeConfiguration).
-      - Define nomes de tabelas, tipos, tamanhos e relacionamentos.
-      - Exemplo: DenunciaMapping.cs, UsuarioMapping.cs
-    
-    #### 📁 Repositories (se usado)
-      Responsabilidade:
-      - Abstrai o acesso a dados.
-      - Ideal para seguir o padrão de Repository Pattern.
-      - Não obrigatório, mas melhora a separação entre domínio e infraestrutura.
+* Expõem os endpoints da API REST (GET, POST, PUT, DELETE).
+* Chamam os métodos do domínio e lidam com DTOs para entrada e saída de dados.
+
+### 📁 Domain
+
+* Contém enums e regras de negócio.
+* Livre de dependências externas (como Entity Framework).
+* Ex: `StatusDenuncia`, `TipoUsuario`, classes de exceções.
+
+### 📁 DTO (Data Transfer Objects)
+
+* Objetos usados para transportar dados da API para o domínio e vice-versa.
+* Subdividido em:
+
+  * `Request`: dados enviados pelo cliente.
+  * `Response`: dados retornados ao cliente.
+
+### 📁 Infrastructure
+
+* Onde estão os detalhes da implementação, acesso a banco e persistência.
+
+#### 📁 Contexts
+
+* Contém a classe `EcoDenunciaContext` (herda de `DbContext`).
+* Define os `DbSet` de cada entidade e aplica configurações dos mapeamentos.
+
+#### 📁 Mappings
+
+* Contém as classes de configuração das entidades para o banco.
+* Usa `IEntityTypeConfiguration<T>` para definir tabelas, tamanhos, chaves, relacionamentos etc.
+
+#### 📁 Persistence
+
+* Contém as **entidades** que representam as tabelas no banco Oracle.
+* Cada entidade encapsula suas validações e métodos como `Create` ou `Atualizar`.
+
+#### 📁 Repositories *(opcional)*
+
+* Implementa o padrão **Repository Pattern** para abstrair o acesso ao banco.
+* Facilita testes e manutenção.
 
 ### 📁 Migrations
-  Responsabilidade:
-  - Gerenciadas pelo EF Core.
-  - Contém arquivos .cs que representam as versões e alterações do banco de dados.
-  - Criadas com dotnet ef migrations add NOME.
 
-### 📄 appsettings.json & appsettings.Development.json
-  Responsabilidade:
-  - Armazenam configurações da aplicação, como ConnectionStrings, opções de log, etc.
-  - Development é carregado quando o ambiente for Development.
+* Geradas pelo Entity Framework Core.
+* Representam as versões do banco de dados e permitem aplicar alterações via `dotnet ef`.
+
+### 📄 appsettings.json / appsettings.Development.json
+
+* Contêm configurações da aplicação, como string de conexão Oracle, logs e ambiente.
 
 ### 📄 Program.cs
-  Responsabilidade:
-  - Ponto de entrada da aplicação ASP.NET Core.
-  - Registra dependências, configura Swagger, Middleware, etc.
+
+* Arquivo principal de inicialização do ASP.NET Core.
+* Registra serviços, middlewares e configura Swagger, contexto, CORS, etc.
+
+### 📄 README.md
+
+* Documentação geral do projeto, com instruções, exemplos de uso e arquitetura.
+
 ---
 
 ## 👥 Integrantes

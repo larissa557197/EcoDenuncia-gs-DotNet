@@ -235,6 +235,7 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
                     IdEstado → 🔗 Estado.IdEstado
 
    ###🧩 Relações:
+  
         |  Entidade     |  Relacionamento com   |  Tipo  |
         |------------------------------------------------|
         |  Denuncia     |	  Usuario             |   N:1  |

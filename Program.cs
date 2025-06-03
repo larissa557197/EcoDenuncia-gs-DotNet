@@ -44,12 +44,18 @@ namespace EcoDenuncia
                 swagger.IncludeXmlComments(xmlPath);
             });
 
+
             // Configura o DbContext para Oracle (ou outro banco que usar)
+
+            var connectionString = builder.Configuration.GetConnectionString("Oracle");
+
+            Console.WriteLine("STRING DE CONEXÃO");
+            Console.WriteLine(connectionString); // verificando no console
+            
             builder.Services.AddDbContext<EcoDenunciaContext>(options =>
             {
                 options.UseOracle(builder.Configuration.GetConnectionString("Oracle"));
-                // Se usar SQL Server, troque para:
-                // options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServer"));
+                
             });
 
             var app = builder.Build();

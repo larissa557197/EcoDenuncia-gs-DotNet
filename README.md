@@ -273,6 +273,7 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
 
 - 🗺️ **Diagrama Entidade-Relacionamento (DER)**:
         - Representa as relações entre:
+  
            `Denuncia`, `Usuario`, `Localizacao`, `OrgaoPublico`, `Acompanhamento`, `Bairro`, `Cidade` e `Estado`.
   
         - 📦 Entidades e Relacionamentos
@@ -281,10 +282,13 @@ O projeto está respaldado por uma estrutura bem definida, com diagramas que fac
                     IdUsuario → 🔗 Usuario.IdUsuario
                     IdLocalizacao → 🔗 Localizacao.IdLocalizacao
                     IdOrgaoPublico → 🔗 OrgaoPublico.IdOrgaoPublico
+  
               - 📍 Localizacao:
                     IdBairro → 🔗 Bairro.IdBairro
+  
               - 🏘️ Bairro:
                     IdCidade → 🔗 Cidade.IdCidade
+  
               - 🏙️ Cidade:
                     IdEstado → 🔗 Estado.IdEstado
 

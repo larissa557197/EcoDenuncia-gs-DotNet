@@ -229,7 +229,7 @@ No arquivo `appsettings.Development.json`, configure a connection string da segu
 }
 ```
 > Importante: Substitua `SEU_USUARIO` e `SUA_SENHA` pelas suas credenciais reais.
->               Exemplo:  RM123456    - 789123
+>               Exemplo:  `RM123456`  -   `789123`
 
 ### 2. Configuração do `launchSettings.json`
 No arquivo `Properties/launchSettings.json`, certifique-se que o perfil de execução contenha a variável de ambiente e as URLs corretas:
@@ -262,7 +262,7 @@ builder.Services.AddDbContext<EcoDenunciaContext>(options =>
 
 ```
 ### 4. Executar a aplicação
-- Use o perfil HTTPS/HTTP para rodar a aplicação localmente.
+- Use o perfil `HTTPS/HTTP` para rodar a aplicação localmente.
 - A aplicação irá abrir o navegador automaticamente apontando para o Swagger UI (/swagger).
 
 ---
@@ -308,7 +308,7 @@ A solução segue o modelo de arquitetura em camadas com responsabilidades bem d
 
 ### 📁 Controllers
 
-* Expõem os endpoints da API REST (GET, POST, PUT, DELETE).
+* Expõem os endpoints da API REST `(GET, POST, PUT, DELETE)`.
 * Chamam os métodos do domínio e lidam com DTOs para entrada e saída de dados.
 
 ### 📁 Domain

@@ -191,7 +191,7 @@ POST /api/acompanhamentodenuncia
    git clone https://github.com/larissa557197/EcoDenuncia-gs-DotNet.git 
    ```
 
-2. Configure a string de conexão Oracle no `appsettings.json` e, ou no `appsettings.Development.json` :
+2. Configure a string de conexão Oracle no `appsettings.Development.json` :
    ```json
    "ConnectionStrings": {
     "Oracle": "Data Source=oracle.fiap.com.br:1521/orcl;User ID=RMXXXXXX;Password=XXXXXX;"

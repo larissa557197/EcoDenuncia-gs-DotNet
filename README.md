@@ -7,13 +7,13 @@ A **EcoDenuncia** é uma API RESTful desenvolvida para registrar e acompanhar de
 ## 🔗 Endpoints Disponíveis
 
 ### 👤 Usuário
-| Verbo | Rota                | Descrição                                |
-|-------|---------------------|------------------------------------------|
-| GET   | `/api/Usuario`      | Lista todos os usuários                  |
-| POST  | `/api/Usuario`      | Cadastra um novo usuário                 |
-| GET   | `/api/Usuario/{id}` | Detalha um usuário por ID                |
-| PUT   | `/api/Usuario/{id}` | Atualiza dados de um usuário existente   |
-| DELETE| `/api/Usuario/{id}` | Remove um usuário do sistema             |
+| Verbo | Rota                | Descrição                                           |
+|-------|---------------------|-----------------------------------------------------|
+| GET   | `/api/Usuario`      | Lista todos os usuários                             |
+| POST  | `/api/Usuario`      | Cadastra um novo usuário                            |
+| GET   | `/api/Usuario/{id}` | Detalha um usuário por ID                           |
+| PUT   | `/api/Usuario/{id}` | Atualiza dados de um usuário existente              |
+| DELETE| `/api/Usuario/{id}` | Remove um usuário do sistema                        |
 
 ### 🏛️ Órgão Público
 | Verbo | Rota                     | Descrição                                      |
@@ -25,49 +25,49 @@ A **EcoDenuncia** é uma API RESTful desenvolvida para registrar e acompanhar de
 | DELETE| `/api/OrgaoPublico/{id}` | Remove um órgão público                        |
 
 ### 📍 Localização
-| Verbo | Rota                     | Descrição                                    |
-|-------|--------------------------|----------------------------------------------|
-| GET   | `/api/Localizacao`       | Lista todas as localizações                  |
-| POST  | `/api/Localizacao`       | Registra uma nova localização                |
-| GET   | `/api/Localizacao/{id}`  | Detalha uma localização por ID               |
-| PUT   | `/api/Localizacao/{id}` | Atualiza dados de uma localização existente   |
-| DELETE| `/api/Localizacao/{id}` | Remove uma localização                        |
+| Verbo | Rota                     | Descrição                                      |
+|-------|--------------------------|------------------------------------------------|
+| GET   | `/api/Localizacao`       | Lista todas as localizações                    |
+| POST  | `/api/Localizacao`       | Registra uma nova localização                  |
+| GET   | `/api/Localizacao/{id}`  | Detalha uma localização por ID                 |
+| PUT   | `/api/Localizacao/{id}`  | Atualiza dados de uma localização existente    |
+| DELETE| `/api/Localizacao/{id}`  | Remove uma localização                         |
 
 ### 🗺️ Estados
-| Verbo | Rota                     | Descrição                               |
-|-------|--------------------------|-----------------------------------------|
-| GET   | `/api/Estado`            | Lista todos os estados                  |
-| POST  | `/api/Estado`            | Registra um novo estado                 |
-| GET   | `/api/Estado/{id}`       | Detalha um estado por ID                |
-| PUT   | `/api/Estado/{id}`       | Atualiza dados de um estado existente   |
-| DELETE| `/api/Estado/{id}`       | Remove um estado                        |
+| Verbo | Rota                     | Descrição                                      |
+|-------|--------------------------|------------------------------------------------|
+| GET   | `/api/Estado`            | Lista todos os estados                         |
+| POST  | `/api/Estado`            | Registra um novo estado                        |
+| GET   | `/api/Estado/{id}`       | Detalha um estado por ID                       |
+| PUT   | `/api/Estado/{id}`       | Atualiza dados de um estado existente          |
+| DELETE| `/api/Estado/{id}`       | Remove um estado                               |
 
 ### 🧾 Denúncia
-| Verbo | Rota                | Descrição                                   |
-|-------|---------------------|---------------------------------------------|
-| GET   | `/api/Denuncia`     | Lista todas as denúncias                    |
-| POST  | `/api/Denuncia`     | Registra uma nova denúncia                  |
-| GET   | `/api/Denuncia/{id}`| Detalha uma denúncia por ID                 |
-| PUT   | `/api/Denuncia/{id}`| Atualiza dados de uma denúncia existente    |
-| DELETE| `/api/Denuncia/{id}`| Remove uma denúncia                         |
+| Verbo | Rota                   | Descrição                                        |
+|-------|------------------------|--------------------------------------------------|
+| GET   | `/api/Denuncia`        | Lista todas as denúncias                         |
+| POST  | `/api/Denuncia`        | Registra uma nova denúncia                       |
+| GET   | `/api/Denuncia/{id}`   | Detalha uma denúncia por ID                      |
+| PUT   | `/api/Denuncia/{id}`   | Atualiza dados de uma denúncia existente         |
+| DELETE| `/api/Denuncia/{id}`   | Remove uma denúncia                              |
 
 ### 🏙️ Cidades
-| Verbo | Rota                | Descrição                                 |
-|-------|---------------------|-------------------------------------------|
-| GET   | `/api/Cidade`       | Lista todas as cidades                    |
-| POST  | `/api/Cidade`       | Registra uma nova cidade                  |
-| GET   | `/api/Cidade/{id}`  | Detalha uma cidade por ID                 |
-| PUT   | `/api/Cidade/{id}`  | Atualiza dados de uma cidade existente    |
-| DELETE| `/api/Cidade/{id}`  | Remove uma cidade                         |
+| Verbo | Rota                | Descrição                                           |
+|-------|---------------------|-----------------------------------------------------|
+| GET   | `/api/Cidade`       | Lista todas as cidades                              |
+| POST  | `/api/Cidade`       | Registra uma nova cidade                            |
+| GET   | `/api/Cidade/{id}`  | Detalha uma cidade por ID                           |
+| PUT   | `/api/Cidade/{id}`  | Atualiza dados de uma cidade existente              |
+| DELETE| `/api/Cidade/{id}`  | Remove uma cidade                                   |
 
 ### 🏘️ Bairros
-| Verbo | Rota                | Descrição                                |
-|-------|---------------------|------------------------------------------|
-| GET   | `/api/Bairro`       | Lista todos os bairros                   |
-| POST  | `/api/Bairro`       | Registra um novo bairro                  |
-| GET   | `/api/Bairro/{id}`  | Detalha um bairro por ID                 |
-| PUT   | `/api/Bairro/{id}`  | Atualiza dados de um bairro existente    |
-| DELETE| `/api/Bairro/{id}`  | Remove um bairro                         |
+| Verbo | Rota                | Descrição                                           |
+|-------|---------------------|-----------------------------------------------------|
+| GET   | `/api/Bairro`       | Lista todos os bairros                              |
+| POST  | `/api/Bairro`       | Registra um novo bairro                             |
+| GET   | `/api/Bairro/{id}`  | Detalha um bairro por ID                            |
+| PUT   | `/api/Bairro/{id}`  | Atualiza dados de um bairro existente               |
+| DELETE| `/api/Bairro/{id}`  | Remove um bairro                                    |
 
 ### 📊 Acompanhamento de Denúncia
 | Verbo | Rota                                 | Descrição                                     |

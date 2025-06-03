@@ -271,22 +271,22 @@ builder.Services.AddDbContext<EcoDenunciaContext>(options =>
 
 O projeto está respaldado por uma estrutura bem definida, com diagramas que facilitam a compreensão:
 
-- 🗺️ **Diagrama Entidade-Relacionamento (DER)**:
-        - Representa as relações entre:
-          ```
-           `Denuncia`, `Usuario`, `Localizacao`, `OrgaoPublico`, `Acompanhamento`, `Bairro`, `Cidade` e `Estado`.
-          ```
-        - 📦 Entidades e Relacionamentos
-              - 🧾 Denuncia:
-                    `IdUsuario` → 🔗 `Usuario.IdUsuario`
-                    `IdLocalizacao` → 🔗 `Localizacao.IdLocalizacao`
-                    `IdOrgaoPublico` → 🔗 `OrgaoPublico.IdOrgaoPublico`
-              - 📍 Localizacao:
-                    `IdBairro` → 🔗 `Bairro.IdBairro`
-              - 🏘️ Bairro:
-                    `IdCidade` → 🔗 `Cidade.IdCidade`
-              - 🏙️ Cidade:
-                    `IdEstado` → 🔗 `Estado.IdEstado`
+- ### 🗺️ **Diagrama Entidade-Relacionamento (DER)**:
+  - #### Representa as relações entre:
+     ```
+     `Denuncia`, `Usuario`, `Localizacao`, `OrgaoPublico`, `Acompanhamento`, `Bairro`, `Cidade` e `Estado`.
+     ```
+    - #### 📦 Entidades e Relacionamentos
+       - 🧾 Denuncia:
+         `IdUsuario` → 🔗 `Usuario.IdUsuario`
+         `IdLocalizacao` → 🔗 `Localizacao.IdLocalizacao`
+         `IdOrgaoPublico` → 🔗 `OrgaoPublico.IdOrgaoPublico`
+        - 📍 Localizacao:
+          `IdBairro` → 🔗 `Bairro.IdBairro`
+        - 🏘️ Bairro:
+          `IdCidade` → 🔗 `Cidade.IdCidade`
+        - 🏙️ Cidade:
+          `IdEstado` → 🔗 `Estado.IdEstado`
   
 
 ### 🧩 Relações:

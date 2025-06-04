@@ -197,6 +197,7 @@ POST /api/acompanhamentodenuncia
     "Oracle": "Data Source=oracle.fiap.com.br:1521/orcl;User ID=RMXXXXXX;Password=XXXXXX;"
    }
    ```
+   > ID= `SEU_RM` - Exemplo: RM123456, Password= `SUA_SENHA_ORACLE` - Exemplo: 123456
 
 3. Aplique as migrations:
    ```bash

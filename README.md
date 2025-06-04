@@ -191,7 +191,7 @@ POST /api/acompanhamentodenuncia
    git clone https://github.com/larissa557197/EcoDenuncia-gs-DotNet.git 
    ```
 
-2. Configure a string de conexão Oracle no `appsettings.Development.json` :
+2. Configure a string de conexão Oracle no `appsettings.json` :
    ```json
    "ConnectionStrings": {
     "Oracle": "Data Source=oracle.fiap.com.br:1521/orcl;User ID=RMXXXXXX;Password=XXXXXX;"
@@ -212,59 +212,6 @@ POST /api/acompanhamentodenuncia
    ```
    http://localhost:{porta}/swagger/index.html
    ```
----
-
-## 🚀 Configuração da Connection String Oracle e Execução Local
-
-Para rodar a aplicação localmente com conexão ao banco Oracle, siga os passos abaixo:
-### 1. Configuração da connection string
-
-No arquivo `appsettings.Development.json`, configure a connection string da seguinte forma:
-
-```json
-{
-  "ConnectionStrings": {
-    "Oracle": "Data Source=oracle.fiap.com.br:1521/orcl;User ID=SEU_USUARIO;Password=SUA_SENHA;"
-  }
-}
-```
-> Importante: Substitua `SEU_USUARIO` e `SUA_SENHA` pelas suas credenciais reais.
->               Exemplo:  `RM123456`  -   `789123`
-
-### 2. Configuração do `launchSettings.json`
-No arquivo `Properties/launchSettings.json`, certifique-se que o perfil de execução contenha a variável de ambiente e as URLs corretas:
-
-```json
-"profiles": {
-  "https": {
-    "commandName": "Project",
-    "dotnetRunMessages": true,
-    "launchBrowser": true,
-    "launchUrl": "swagger",
-    "applicationUrl": "https://localhost:7028;http://localhost:5159",
-    "environmentVariables": {
-      "ASPNETCORE_ENVIRONMENT": "Development",
-      "ConnectionStrings__Oracle": "Data Source=oracle.fiap.com.br:1521/orcl;User ID=SEU_USUARIO;Password=SUA_SENHA;"
-    }
-  }
-}
-```
-### 3. Configuração do DbContext no código
-No arquivo `Program.cs` (ou onde você configura os serviços), configure o DbContext para usar a connection string:
-
-```
-var connectionString = builder.Configuration.GetConnectionString("Oracle");
-
-builder.Services.AddDbContext<EcoDenunciaContext>(options =>
-{
-    options.UseOracle(connectionString);
-});
-
-```
-### 4. Executar a aplicação
-- Use o perfil `HTTPS/HTTP` para rodar a aplicação localmente.
-- A aplicação irá abrir o navegador automaticamente apontando para o Swagger UI (/swagger).
-
 ---
 
 ## 🧩 Diagramas do Projeto

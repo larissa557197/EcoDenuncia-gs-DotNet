@@ -47,10 +47,10 @@ namespace EcoDenuncia
 
             // Configura o DbContext para Oracle (ou outro banco que usar)
 
-            var connectionString = builder.Configuration.GetConnectionString("Oracle");
+            //var connectionString = builder.Configuration.GetConnectionString("Oracle");
 
-            Console.WriteLine("STRING DE CONEXÃO");
-            Console.WriteLine(connectionString); // verificando no console
+            //Console.WriteLine("STRING DE CONEXÃO");
+            //Console.WriteLine(connectionString); // verificando no console
             
             builder.Services.AddDbContext<EcoDenunciaContext>(options =>
             {

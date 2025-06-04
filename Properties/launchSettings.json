@@ -26,8 +26,8 @@
             "launchUrl": "swagger",
             "applicationUrl": "https://localhost:7028;http://localhost:5159",
             "environmentVariables": {
-                "ASPNETCORE_ENVIRONMENT": "Development",
-                "ConnectionStrings__Oracle": "Data Source=oracle.fiap.com.br:1521/orcl;User ID=RM557197;Password=281205;"
+                "ASPNETCORE_ENVIRONMENT": "Development"
+ //"ConnectionStrings__Oracle": "Data Source=oracle.fiap.com.br:1521/orcl;User ID=RM557197;Password=281205;"               
             }
         }
     },

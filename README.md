@@ -303,7 +303,7 @@ A solução segue o modelo de arquitetura em camadas com responsabilidades bem d
 
 ### 📄 appsettings.json / appsettings.Development.json
 
-* Contêm configurações da aplicação, como string de conexão Oracle, logs e ambiente.
+* Contêm configurações da aplicação, como string de conexão Oracle.
 
 ### 📄 Program.cs
 

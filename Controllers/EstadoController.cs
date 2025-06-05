@@ -21,8 +21,12 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna a lista de estados cadastrados
+        /// Retorna uma lista de todos os estados cadastrados no sistema.
         /// </summary>
+        /// <remarks>
+        /// Este endpoint retorna uma lista com todos os estados já registrados no banco de dados, com suas respectivas informações como nome e UF.
+        /// </remarks>
+        /// <response code="200">Lista de estados retornada com sucesso</response>
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<EstadoResponse>>> GetEstados()
@@ -39,9 +43,15 @@ namespace EcoDenuncia.Controllers
             return Ok(estados);
         }
 
-        /// <summary>
-        /// Retorna um estado pelo Id
+        // <summary>
+        /// Retorna os detalhes de um estado específico pelo seu Id.
         /// </summary>
+        /// <param name="id">Id do estado</param>
+        /// <remarks>
+        /// Este endpoint permite buscar um estado específico no sistema através do seu ID único.
+        /// </remarks>
+        /// <response code="200">Estado encontrado e retornado com sucesso</response>
+        /// <response code="404">Estado não encontrado</response>
         [HttpGet("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -63,8 +73,14 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Cria um novo estado
+        /// Cria um novo estado no sistema.
         /// </summary>
+        /// <param name="request">Dados do estado a ser criado</param>
+        /// <remarks>
+        /// Este endpoint cria um novo estado, que será registrado no banco de dados com informações como nome e UF.
+        /// </remarks>
+        /// <response code="201">Estado criado com sucesso</response>
+        /// <response code="400">Erro nos dados fornecidos</response>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<ActionResult<EstadoResponse>> PostEstado(EstadoRequest request)
@@ -85,8 +101,16 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Atualiza um estado existente
+        /// Atualiza os dados de um estado existente no sistema.
         /// </summary>
+        /// <param name="id">Id do estado a ser atualizado</param>
+        /// <param name="request">Dados atualizados do estado</param>
+        /// <remarks>
+        /// Este endpoint permite atualizar um estado já registrado no sistema com novos dados de nome e UF.
+        /// </remarks>
+        /// <response code="200">Estado atualizado com sucesso</response>
+        /// <response code="404">Estado não encontrado</response>
+        /// <response code="400">Erro nos dados fornecidos</response>
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -113,8 +137,14 @@ namespace EcoDenuncia.Controllers
 
 
         /// <summary>
-        /// Remove um estado pelo Id
+        /// Remove um estado do sistema pelo Id.
         /// </summary>
+        /// <param name="id">Id do estado a ser removido</param>
+        /// <remarks>
+        /// Este endpoint permite excluir um estado do sistema com base no seu ID único.
+        /// </remarks>
+        /// <response code="204">Estado removido com sucesso</response>
+        /// <response code="404">Estado não encontrado</response>
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]

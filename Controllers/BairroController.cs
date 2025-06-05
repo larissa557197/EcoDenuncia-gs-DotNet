@@ -21,9 +21,15 @@ namespace EcoDenuncia.Controllers
         {
             _context = context;
         }
+
         /// <summary>
-        /// Retorna a lista de bairros cadastrados
+        /// Retorna uma lista de todos os bairros cadastrados.
         /// </summary>
+        /// <remarks>
+        /// Exemplo de Solicitação:
+        /// GET api/bairros
+        /// </remarks>
+        /// <response code="200">Lista de bairros retornada com sucesso</response>
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<BairroResponse>>> GetBairros()
@@ -41,8 +47,11 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna um bairro pelo Id
+        /// Retorna detalhes de um bairro específico pelo Id.
         /// </summary>
+        /// <param name="id">ID do bairro a ser retornado</param>
+        /// <response code="200">Detalhes do bairro retornados com sucesso</response>
+        /// <response code="404">Bairro não encontrado</response>
         [HttpGet("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -64,8 +73,10 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Cria um novo bairro
+        /// Cria um novo bairro no sistema.
         /// </summary>
+        /// <param name="request">Dados do bairro a ser criado</param>
+        /// <response code="201">Bairro criado com sucesso</response>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<ActionResult<BairroResponse>> PostBairro(BairroRequest request)
@@ -86,8 +97,12 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Atualiza um bairro existente
+        /// Atualiza os dados de um bairro existente.
         /// </summary>
+        /// <param name="id">ID do bairro a ser atualizado</param>
+        /// <param name="request">Novos dados do bairro</param>
+        /// <response code="200">Bairro atualizado com sucesso</response>
+        /// <response code="404">Bairro não encontrado</response>
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -114,8 +129,11 @@ namespace EcoDenuncia.Controllers
 
 
         /// <summary>
-        /// Remove um bairro pelo Id
+        /// Remove um bairro do sistema pelo ID.
         /// </summary>
+        /// <param name="id">ID do bairro a ser removido</param>
+        /// <response code="204">Bairro removido com sucesso</response>
+        /// <response code="404">Bairro não encontrado</response>
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]

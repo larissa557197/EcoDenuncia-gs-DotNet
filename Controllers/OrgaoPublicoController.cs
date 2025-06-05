@@ -23,8 +23,14 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna a lista de órgãos públicos cadastrados
+        /// Retorna a lista de todos os órgãos públicos cadastrados no sistema.
         /// </summary>
+        /// <remarks>
+        /// Exemplo de requisição:
+        /// GET /api/orgaopublico
+        /// </remarks>
+        /// <response code="200">Lista de órgãos públicos retornada com sucesso.</response>
+        /// <response code="500">Erro interno no servidor.</response>
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<OrgaoPublicoResponse>>> GetOrgaosPublicos()
@@ -42,8 +48,11 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna um órgão público pelo Id
+        /// Retorna um órgão público específico, identificado pelo Id.
         /// </summary>
+        /// <param name="id">Id do órgão público a ser recuperado.</param>
+        /// <response code="200">Órgão público encontrado e retornado com sucesso.</response>
+        /// <response code="404">Órgão público não encontrado.</response>
         [HttpGet("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -65,8 +74,11 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Cria um novo órgão público
+        /// Cria um novo órgão público no sistema.
         /// </summary>
+        /// <param name="request">Dados do órgão público a ser criado.</param>
+        /// <response code="201">Órgão público criado com sucesso.</response>
+        /// <response code="400">Dados inválidos no corpo da requisição.</response>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<ActionResult<OrgaoPublicoResponse>> PostOrgaoPublico(OrgaoPublicoRequest request)
@@ -87,12 +99,12 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Atualiza os dados de um órgão público existente
+        /// Atualiza os dados de um órgão público existente.
         /// </summary>
-        /// <param name="id">Id do órgão público</param>
-        /// <param name="request">Dados atualizados</param>
-        /// <response code="200">Órgão atualizado com sucesso</response>
-        /// <response code="404">Órgão não encontrado</response>
+        /// <param name="id">Id do órgão público a ser atualizado.</param>
+        /// <param name="request">Dados atualizados do órgão público.</param>
+        /// <response code="200">Órgão público atualizado com sucesso.</response>
+        /// <response code="404">Órgão público não encontrado.</response>
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -119,8 +131,11 @@ namespace EcoDenuncia.Controllers
 
 
         /// <summary>
-        /// Remove um órgão público pelo Id
+        /// Remove um órgão público pelo Id.
         /// </summary>
+        /// <param name="id">Id do órgão público a ser removido.</param>
+        /// <response code="204">Órgão público removido com sucesso.</response>
+        /// <response code="404">Órgão público não encontrado.</response>
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]

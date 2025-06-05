@@ -25,8 +25,13 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna lista de acompanhamentos de denúncia
+        /// Retorna a lista completa de acompanhamentos de denúncia.
         /// </summary>
+        /// <remarks>
+        /// Este endpoint retorna todos os acompanhamentos registrados no sistema, com status, data e observações.
+        /// </remarks>
+        /// <response code="200">Retorna a lista de acompanhamentos de denúncia</response>
+        /// <response code="500">Erro interno do servidor</response>
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<AcompanhamentoDenunciaResponse>>> GetAcompanhamentos()
@@ -46,8 +51,14 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna acompanhamento pelo Id
+        /// Retorna um acompanhamento de denúncia específico pelo Id.
         /// </summary>
+        /// <param name="id">Id do acompanhamento de denúncia</param>
+        /// <remarks>
+        /// Este endpoint retorna todos os dados detalhados do acompanhamento de uma denúncia com base no Id fornecido.
+        /// </remarks>
+        /// <response code="200">Retorna os dados do acompanhamento de denúncia</response>
+        /// <response code="404">Acompanhamento não encontrado</response>
         [HttpGet("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -71,8 +82,14 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Cria um novo acompanhamento de denúncia
+        /// Cria um novo acompanhamento de denúncia no sistema.
         /// </summary>
+        /// <param name="request">Dados necessários para criar o acompanhamento de denúncia</param>
+        /// <remarks>
+        /// Este endpoint cria um novo acompanhamento de denúncia e retorna a resposta com os dados da nova entrada.
+        /// </remarks>
+        /// <response code="201">Acompanhamento de denúncia criado com sucesso</response>
+        /// <response code="400">Status inválido fornecido</response>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<ActionResult<AcompanhamentoDenunciaResponse>> PostAcompanhamento(AcompanhamentoDenunciaRequest request)
@@ -99,9 +116,17 @@ namespace EcoDenuncia.Controllers
             return CreatedAtAction(nameof(GetAcompanhamento), new { id = acompanhamento.IdAcompanhamento }, response);
         }
 
-        /// <summary>
-        /// Atualiza um acompanhamento de denúncia existente
+        /// /// <summary>
+        /// Atualiza os dados de um acompanhamento de denúncia existente.
         /// </summary>
+        /// <param name="id">Id do acompanhamento de denúncia</param>
+        /// <param name="request">Dados atualizados do acompanhamento de denúncia</param>
+        /// <remarks>
+        /// Este endpoint permite que um acompanhamento de denúncia existente seja atualizado com novas informações.
+        /// </remarks>
+        /// <response code="200">Acompanhamento de denúncia atualizado com sucesso</response>
+        /// <response code="400">Dados inválidos fornecidos</response>
+        /// <response code="404">Acompanhamento não encontrado</response>
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -134,8 +159,14 @@ namespace EcoDenuncia.Controllers
 
 
         /// <summary>
-        /// Remove acompanhamento pelo Id
+        /// Remove um acompanhamento de denúncia existente.
         /// </summary>
+        /// <param name="id">Id do acompanhamento de denúncia</param>
+        /// <remarks>
+        /// Este endpoint remove o acompanhamento de uma denúncia do sistema.
+        /// </remarks>
+        /// <response code="204">Acompanhamento de denúncia removido com sucesso</response>
+        /// <response code="404">Acompanhamento não encontrado</response>
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]

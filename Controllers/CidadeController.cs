@@ -21,8 +21,14 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna a lista de cidades cadastradas
+        /// Retorna a lista de todas as cidades cadastradas no sistema.
         /// </summary>
+        /// <remarks>
+        /// Esta operação busca todas as cidades, incluindo o estado relacionado, 
+        /// e retorna uma lista com os detalhes de cada cidade.
+        /// </remarks>
+        /// <response code="200">Lista de cidades retornada com sucesso.</response>
+        /// <response code="500">Erro interno do servidor.</response>
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<CidadeResponse>>> GetCidades()
@@ -43,8 +49,14 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna uma cidade pelo Id
+        /// Retorna os detalhes de uma cidade específica através do seu ID.
         /// </summary>
+        /// <param name="id">ID da cidade a ser buscada.</param>
+        /// <remarks>
+        /// Retorna os dados completos de uma cidade, incluindo nome e estado associado.
+        /// </remarks>
+        /// <response code="200">Cidade encontrada com sucesso.</response>
+        /// <response code="404">Cidade não encontrada.</response>
         [HttpGet("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -66,8 +78,14 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Cria uma nova cidade
+        /// Cria uma nova cidade no sistema.
         /// </summary>
+        /// <param name="request">Dados da nova cidade a ser cadastrada.</param>
+        /// <remarks>
+        /// Este método permite criar uma cidade associando-a a um estado, com os dados fornecidos.
+        /// </remarks>
+        /// <response code="201">Cidade criada com sucesso.</response>
+        /// <response code="400">Requisição inválida (dados incorretos).</response>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         public async Task<ActionResult<CidadeResponse>> PostCidade(CidadeRequest request)
@@ -88,8 +106,16 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Atualiza os dados de uma cidade existente
+        /// Atualiza os dados de uma cidade existente no sistema.
         /// </summary>
+        /// <param name="id">ID da cidade a ser atualizada.</param>
+        /// <param name="request">Novos dados da cidade.</param>
+        /// <remarks>
+        /// Atualiza os detalhes de uma cidade existente, permitindo alteração do nome e estado.
+        /// </remarks>
+        /// <response code="200">Cidade atualizada com sucesso.</response>
+        /// <response code="400">Requisição inválida (dados incorretos).</response>
+        /// <response code="404">Cidade não encontrada.</response>
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -121,8 +147,14 @@ namespace EcoDenuncia.Controllers
 
 
         /// <summary>
-        /// Remove uma cidade pelo Id
+        /// Remove uma cidade do sistema pelo seu ID.
         /// </summary>
+        /// <param name="id">ID da cidade a ser removida.</param>
+        /// <remarks>
+        /// Este método exclui a cidade especificada, removendo-a permanentemente do banco de dados.
+        /// </remarks>
+        /// <response code="204">Cidade removida com sucesso.</response>
+        /// <response code="404">Cidade não encontrada.</response>
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]

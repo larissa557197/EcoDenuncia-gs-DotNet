@@ -22,8 +22,12 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna uma lista de denúncias
+        /// Retorna uma lista de todas as denúncias registradas no sistema
         /// </summary>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// GET /api/denuncia
+        /// </remarks>
         /// <response code="200">Lista de denúncias retornada com sucesso</response>
         /// <response code="500">Erro interno do servidor</response>
         [HttpGet]
@@ -58,10 +62,14 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna uma denúncia pelo Id
+        /// Retorna os detalhes de uma denúncia específica pelo seu ID
         /// </summary>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// GET /api/denuncia/{id}
+        /// </remarks>
         /// <param name="id">Id da denúncia</param>
-        /// <response code="200">Denúncia encontrada</response>
+        /// <response code="200">Retorna a denúncia solicitada</response>
         /// <response code="404">Denúncia não encontrada</response>
         [HttpGet("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
@@ -99,8 +107,20 @@ namespace EcoDenuncia.Controllers
 
 
         /// <summary>
-        /// Cria uma nova denúncia
+        /// Cria uma nova denúncia no sistema
         /// </summary>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// POST /api/denuncia
+        /// Corpo da requisição:
+        /// {
+        ///     "idUsuario": "guid_usuario",
+        ///     "idLocalizacao": "guid_localizacao",
+        ///     "idOrgaoPublico": "guid_orgao",
+        ///     "dataHora": "2025-06-02T16:37:52",
+        ///     "descricao": "Lixo acumulado na rua"
+        /// }
+        /// </remarks>
         /// <param name="request">Dados da denúncia</param>
         /// <response code="201">Denúncia criada com sucesso</response>
         /// <response code="400">Dados inválidos na requisição</response>
@@ -136,6 +156,18 @@ namespace EcoDenuncia.Controllers
         /// <summary>
         /// Atualiza os dados de uma denúncia existente
         /// </summary>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// PUT /api/denuncia/{id}
+        /// Corpo da requisição:
+        /// {
+        ///     "idUsuario": "guid_usuario",
+        ///     "idLocalizacao": "guid_localizacao",
+        ///     "idOrgaoPublico": "guid_orgao",
+        ///     "dataHora": "2025-06-02T16:37:52",
+        ///     "descricao": "Descrição atualizada"
+        /// }
+        /// </remarks>
         /// <param name="id">Id da denúncia</param>
         /// <param name="request">Dados atualizados da denúncia</param>
         /// <response code="200">Denúncia atualizada com sucesso</response>

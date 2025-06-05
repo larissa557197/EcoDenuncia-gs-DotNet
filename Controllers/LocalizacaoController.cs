@@ -24,8 +24,13 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna a lista de localizações cadastradas
+        /// Retorna a lista de todas as localizações cadastradas no sistema.
         /// </summary>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// 
+        ///     GET /api/localizacoes
+        /// </remarks>
         /// <response code="200">Retorna a lista de localizações</response>
         /// <response code="500">Erro interno do servidor</response>
         [HttpGet]
@@ -51,9 +56,14 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna uma localização pelo Id
+        /// Retorna uma localização específica a partir do Id informado.
         /// </summary>
         /// <param name="id">Id da localização</param>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// 
+        ///     GET /api/localizacoes/{id}
+        /// </remarks>
         /// <response code="200">Retorna a localização solicitada</response>
         /// <response code="404">Localização não encontrada</response>
         [HttpGet("{id}")]
@@ -82,11 +92,23 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Cria uma nova localização
+        /// Cria uma nova localização no sistema.
         /// </summary>
-        /// <param name="request">Dados da localização</param>
+        /// <param name="request">Dados da localização a ser criada</param>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// 
+        ///     POST /api/localizacoes
+        ///     {
+        ///         "logradouro": "Rua das Flores",
+        ///         "numero": "123",
+        ///         "complemento": "Apto 101",
+        ///         "cep": "50000000",
+        ///         "idBairro": "bairro-id"
+        ///     }
+        /// </remarks>
         /// <response code="201">Localização criada com sucesso</response>
-        /// <response code="400">Requisição inválida</response>
+        /// <response code="400">Requisição inválida, dados incompletos ou malformados</response>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
@@ -113,10 +135,22 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Atualiza uma localização existente
+        /// Atualiza os dados de uma localização existente.
         /// </summary>
-        /// <param name="id">Id da localização</param>
+        /// <param name="id">Id da localização a ser atualizada</param>
         /// <param name="request">Dados atualizados da localização</param>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// 
+        ///     PUT /api/localizacoes/{id}
+        ///     {
+        ///         "logradouro": "Rua das Flores Atualizada",
+        ///         "numero": "123A",
+        ///         "complemento": "Apto 102",
+        ///         "cep": "50000001",
+        ///         "idBairro": "bairro-id"
+        ///     }
+        /// </remarks>
         /// <response code="200">Localização atualizada com sucesso</response>
         /// <response code="404">Localização não encontrada</response>
         [HttpPut("{id}")]
@@ -152,9 +186,9 @@ namespace EcoDenuncia.Controllers
 
 
         /// <summary>
-        /// Remove uma localização pelo Id
+        /// Remove uma localização do sistema pelo Id.
         /// </summary>
-        /// <param name="id">Id da localização</param>
+        /// <param name="id">Id da localização a ser removida</param>
         /// <response code="204">Localização removida com sucesso</response>
         /// <response code="404">Localização não encontrada</response>
         [HttpDelete("{id}")]

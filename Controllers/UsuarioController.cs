@@ -23,9 +23,14 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna lista de usuários
+        /// Retorna a lista de todos os usuários cadastrados
         /// </summary>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// GET /api/usuarios
+        /// </remarks>
         /// <response code="200">Lista de usuários retornada com sucesso</response>
+        /// <response code="500">Erro interno do servidor</response>
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<UsuarioResponse>>> GetUsuarios()
@@ -44,9 +49,13 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Retorna usuário por Id
+        /// Retorna os dados de um usuário específico pelo ID
         /// </summary>
-        /// <param name="id">Id do usuário</param>
+        /// <param name="id">ID do usuário</param>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// GET /api/usuarios/{id}
+        /// </remarks>
         /// <response code="200">Usuário encontrado</response>
         /// <response code="404">Usuário não encontrado</response>
         [HttpGet("{id}")]
@@ -73,9 +82,13 @@ namespace EcoDenuncia.Controllers
         }
 
         /// <summary>
-        /// Cria novo usuário
+        /// Cria um novo usuário no sistema
         /// </summary>
-        /// <param name="request">Dados do usuário</param>
+        /// <param name="request">Dados do usuário a ser criado</param>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// POST /api/usuarios
+        /// </remarks>
         /// <response code="201">Usuário criado com sucesso</response>
         /// <response code="400">Email já cadastrado</response>
         [HttpPost]
@@ -117,9 +130,14 @@ namespace EcoDenuncia.Controllers
         /// <summary>
         /// Atualiza os dados de um usuário existente
         /// </summary>
-        /// <param name="id">Id do usuário</param>
-        /// <param name="request">Dados atualizados</param>
+        /// <param name="id">ID do usuário</param>
+        /// <param name="request">Dados atualizados do usuário</param>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// PUT /api/usuarios/{id}
+        /// </remarks>
         /// <response code="200">Usuário atualizado com sucesso</response>
+        /// <response code="400">Dados inválidos</response>
         /// <response code="404">Usuário não encontrado</response>
         [HttpPut("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
@@ -149,9 +167,13 @@ namespace EcoDenuncia.Controllers
 
 
         /// <summary>
-        /// Deleta usuário pelo Id
+        /// Remove um usuário do sistema pelo ID
         /// </summary>
-        /// <param name="id">Id do usuário</param>
+        /// <param name="id">ID do usuário</param>
+        /// <remarks>
+        /// Exemplo de solicitação:
+        /// DELETE /api/usuarios/{id}
+        /// </remarks>
         /// <response code="204">Usuário deletado com sucesso</response>
         /// <response code="404">Usuário não encontrado</response>
         [HttpDelete("{id}")]

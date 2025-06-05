@@ -77,16 +77,31 @@ namespace EcoDenuncia.Controllers
         /// </summary>
         /// <param name="request">Dados do usuário</param>
         /// <response code="201">Usuário criado com sucesso</response>
+        /// <response code="400">Email já cadastrado</response>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<UsuarioResponse>> PostUsuario(UsuarioRequest request)
         {
+            // Verificar se o email já está cadastrado
+            var existingUser = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.Email == request.Email);
+
+            // Se o usuário já existe, retorna um erro com status 400
+            if (existingUser != null)
+            {
+                return BadRequest("Email já cadastrado.");
+            }
+
+            // Criar o novo usuário
             var usuario = Usuario.Create(request.Nome, request.Email, request.Senha,
                 Enum.TryParse(request.TipoUsuario, true, out TipoUsuario tipo) ? tipo : TipoUsuario.USER);
 
+            // Adicionar o usuário ao banco de dados
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
 
+            // Criar a resposta com os dados do usuário
             var response = new UsuarioResponse
             {
                 IdUsuario = usuario.IdUsuario,
@@ -95,6 +110,7 @@ namespace EcoDenuncia.Controllers
                 TipoUsuario = usuario.TipoUsuario.ToString()
             };
 
+            // Retorna a resposta com o usuário criado
             return CreatedAtAction(nameof(GetUsuario), new { id = usuario.IdUsuario }, response);
         }
 

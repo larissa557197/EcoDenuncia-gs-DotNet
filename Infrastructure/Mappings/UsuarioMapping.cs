@@ -30,6 +30,11 @@ namespace EcoDenuncia.Infrastructure.Mappings
                 .HasMaxLength(200)
                 .IsRequired();
 
+            //Adicionando a restrição UNIQUE para o E-mail
+            builder
+                .HasIndex(u => u.Email)
+                .IsUnique(); // Garantindo que o e-mail seja único
+
             builder
                 .Property(u => u.Senha)
                 .HasColumnName("senha")

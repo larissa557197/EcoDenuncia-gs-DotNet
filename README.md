@@ -325,8 +325,8 @@ A solução segue o modelo de arquitetura em camadas com responsabilidades bem d
    ```
 - Vídeo da demonstração da solução:
   ```
-   https://drive.google.com/file/d/16wRbSz3etDfNoPsdNCfvlKBS0Wfi2FE4/view?usp=sharing
-   ```
+   https://youtu.be/un5Zr9ukYWw
+  ```
 ---
 
 ## 👥 Integrantes

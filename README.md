@@ -321,7 +321,7 @@ A solução segue o modelo de arquitetura em camadas com responsabilidades bem d
 
 - Vídeo Pitch:
   ```
-   http://localhost:{porta}/swagger/index.html
+   https://youtu.be/Unx9WRp3HNM
    ```
 - Vídeo da demonstração da solução:
   ```
